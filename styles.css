@@ -31,14 +31,11 @@ body{
 }
 
 .old {
-	font-family: 'rodttf', serif;
+	font-family: 'front', serif;
 }
 .new {
 	font-family: 'rodw', serif;
 }
 .new1 {
 	font-family: 'rodw2', serif;
-}
-p {
-        font-family: 'front', serif;
 }
