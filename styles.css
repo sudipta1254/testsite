@@ -1,4 +1,10 @@
 @font-face {
+    font-family: "front";
+    src: url(Final-frontier.tff) format(ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: "rodw";
     src: url(Rodetta.woff) format(woff);
     font-weight: normal;
@@ -32,4 +38,7 @@ body{
 }
 .new1 {
 	font-family: 'rodw2', serif;
+}
+p {
+        font-family: 'front', serif;
 }
