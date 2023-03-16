@@ -5,6 +5,12 @@
     font-style: normal;
 }
 @font-face {
+    font-family: "sc";
+    src: url(SIMPLECANDY.ttf) format(truetype);
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: "rodw";
     src: url(Rodetta.woff) format(woff);
     font-weight: normal;
@@ -42,4 +48,7 @@ body{
 }
 #col {
         color: #C5941B;
+}
+#col2 {
+        font-family: sc, serif;
 }
