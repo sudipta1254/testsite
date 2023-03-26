@@ -9,14 +9,17 @@ div {
     border: 5px solid cadetblue;
     /*background-color: burlywood;*/
     background-color: black;
-    /*background-repeat: no-repeat;*/
+    background-repeat: no-repeat;
 }
 
 button {
     margin: 20px 90px;
 }
-
-@media screen and (max-width: 768px) {
+p {
+    color: cadetblue;
+    text-align: center;
+}
+@media screen and (max-width: 450px) {
     body {
         margin: 0;
         padding: 0;
@@ -24,7 +27,7 @@ button {
 
     div {
         width: 414px;
-        height: 350px;
+        height: 750px;
     }
 
     button {
