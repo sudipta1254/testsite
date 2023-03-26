@@ -3,6 +3,7 @@ function random() {
     const h = 1080;
     //document.getElementById('get').style.backgroundImage = "url('https://source.unsplash.com/random/500x500?city,night')";
     document.getElementById('get').style.backgroundImage ="url('https://source.unsplash.com/random/"+ w +"x"+ h +"?city,night')";
+    document.getElementById('pa').innerHTML = 'Generating!';
 }
 
 function reset() {
