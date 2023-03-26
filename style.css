@@ -1,0 +1,33 @@
+body {
+    margin: 50px 300px;
+    background-color: black;
+}
+
+div {
+    width: 500px;
+    height: 500px;
+    border: 5px solid cadetblue;
+    /*background-color: burlywood;*/
+    background-color: black;
+    /*background-repeat: no-repeat;*/
+}
+
+button {
+    margin: 20px 90px;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    div {
+        width: 414px;
+        height: 350px;
+    }
+
+    button {
+        margin: 10px 70px;
+    }
+}
