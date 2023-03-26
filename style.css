@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Noto+Sans+Avestan&family=Orbitron&family=Ubuntu:wght@300&display=swap');
+
 body {
     margin: 50px 300px;
     background-color: black;
@@ -16,6 +18,7 @@ button {
     margin: 20px 90px;
 }
 p {
+    font-family: Ubuntu;
     color: cadetblue;
     text-align: center;
 }
