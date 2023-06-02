@@ -35,4 +35,16 @@ function d() {
    i.href = `${data.preview[data.preview.length - 1]}`;
 }
 
+function random() {
+   page = list[Math.floor(Math.random()*list.length)];
+   meme(page);
+}
 
+function down(link) {
+   a3 = document.querySelector('.d3');
+   li = a3.children[0].src;
+   link.href = li;
+   alert(li);
+}
+
+random();
