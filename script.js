@@ -8,8 +8,8 @@ list = ['AdviceAnimals', 'MemeEconomy', 'ComedyCemetery', 'memes',
         'devilmaycry', 'PhotoshopBattles', 'comedyhomicide', 'holesome',
         'ihaveihaveihavereddit', 'Animemes', 'ShitPostCrusaders',
         'Angryupvote', 'artmemes', 'cursedcomments', 'depression_memes',
-        'linuxmemes', 'ProgrammerHumor', 'maybemaybemaybe', 'MEOW_IRL',
-        'SequelMemes', 'SesameStreetMemes', 'Unexpected', 'YouSeeComrade',
+        'linuxmemes', 'ProgrammerHumor', 'MEOW_IRL',
+        'SequelMemes', 'SesameStreetMemes', 'YouSeeComrade',
         'shitposting', 'BPDmemes', 'GenealogyMemes', 'Im15AndThisIsYeet', 
         'ComedyNecrophilia', 'dogelore', 'whenthe', 'anarchyches'];
 
@@ -35,13 +35,14 @@ function d() {
    a2 = document.querySelector('.d23');
    a3 = document.querySelector('img');
    a4 = document.querySelector('.d41');
-   i = document.querySelector('a');
+   i = document.querySelectorAll('a');
    d1.innerHTML = `Subreddit:- ${data.subreddit}`;
    a1.innerHTML = `Author:- ${data.author}`;
    a2.innerHTML = `${data.title}`;
    a3.src = `${data.url}`;
    a4.innerHTML = `${data.ups} upvotes`;
-   i.href = `${data.preview[data.preview.length - 1]}`;
+   i[0].href = `${data.preview[data.preview.length - 1]}`;
+   i[1].href = `${data.postLink}`;
 }
 
 function random() {
@@ -56,7 +57,7 @@ function down(link) {
 }
 
 function visit(link) {
-   link.href = data.postLink;
+   //link.href = data.postLink;
 }
 
 //random();
