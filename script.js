@@ -34,11 +34,13 @@ function d() {
    a1 = document.querySelector('.d22');
    a2 = document.querySelector('.d23');
    a3 = document.querySelector('img');
+   a4 = document.querySelector('.d41');
    i = document.querySelector('a');
    d1.innerHTML = `Subreddit:- ${data.subreddit}`;
    a1.innerHTML = `Author:- ${data.author}`;
    a2.innerHTML = `${data.title}`;
    a3.src = `${data.url}`;
+   a4.innerHTML = `${data.ups} upvotes`;
    i.href = `${data.preview[data.preview.length - 1]}`;
 }
 
