@@ -44,7 +44,6 @@ function down(link) {
    a3 = document.querySelector('.d3');
    li = a3.children[0].src;
    link.href = li;
-   alert(li);
 }
 
 random();
