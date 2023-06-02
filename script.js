@@ -8,3 +8,13 @@ list = ['AdviceAnimals', 'MemeEconomy', 'ComedyCemetery', 'memes',
         'devilmaycry', 'PhotoshopBattles'];
 
 
+async function meme(w) {
+   data = await fetch(`https://meme-api.com/gimme/${w}`)
+   .then(res => res.json())
+   .catch(error => {
+      alert(error);
+   });
+   d();
+}
+
+
