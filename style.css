@@ -4,7 +4,7 @@ body {
 }
 .d2 {
     text-align: center;
-    margin: 30px 10px 40px;
+    margin: 0px 10px 20px;
 }
 .d3 {
     width: 400px;
@@ -43,6 +43,6 @@ i {
    text-decoration: none;
 }
 .d41, a {
-   //display: none;
+   /*display: none;*/
    margin: auto;
 }
