@@ -57,4 +57,4 @@ function visit(link) {
    link.href = data.postLink;
 }
 
-random();
+//random();
