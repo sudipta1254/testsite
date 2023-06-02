@@ -42,6 +42,7 @@ i {
    margin-left: 20px;
    text-decoration: none;
 }
-a {
-   display: none;
+.d41, a {
+   //display: none;
+   margin: auto;
 }
