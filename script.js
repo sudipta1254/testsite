@@ -5,7 +5,13 @@ list = ['AdviceAnimals', 'MemeEconomy', 'ComedyCemetery', 'memes',
         'comedyheaven', 'me_irl', 'crappyoffbrands', 'im14andthisisdeep',
         'trippinthroughtime', '4chan', 'TheRealJoke', 'nobodyasked',
         'wheredidthesodago', 'suicidebywords', 'madlads', 'puns',
-        'devilmaycry', 'PhotoshopBattles'];
+        'devilmaycry', 'PhotoshopBattles', 'comedyhomicide', 'holesome',
+        'ihaveihaveihavereddit', 'Animemes', 'ShitPostCrusaders',
+        'Angryupvote', 'artmemes', 'cursedcomments', 'depression_memes',
+        'linuxmemes', 'ProgrammerHumor', 'maybemaybemaybe', 'MEOW_IRL',
+        'SequelMemes', 'SesameStreetMemes', 'Unexpected', 'YouSeeComrade',
+        'shitposting', 'BPDmemes', 'GenealogyMemes', 'Im15AndThisIsYeet', 
+        'ComedyNecrophilia', 'dogelore', 'whenthe', 'anarchyches'];
 
 
 async function meme(w) {
@@ -14,6 +20,7 @@ async function meme(w) {
    .catch(error => {
       alert(error);
    });
+   //console.log(`${data.subreddit} ${w}`);
    d();
 }
 
@@ -44,6 +51,10 @@ function down(link) {
    a3 = document.querySelector('.d3');
    li = a3.children[0].src;
    link.href = li;
+}
+
+function visit(link) {
+   link.href = data.postLink;
 }
 
 random();
