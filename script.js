@@ -17,4 +17,22 @@ async function meme(w) {
    d();
 }
 
+function get() {
+   value = document.querySelector('input').value;
+   meme(value);
+}
+
+function d() {
+   d1 = document.querySelector('.d21');
+   a1 = document.querySelector('.d22');
+   a2 = document.querySelector('.d23');
+   a3 = document.querySelector('img');
+   i = document.querySelector('a');
+   d1.innerHTML = `Subreddit:- ${data.subreddit}`;
+   a1.innerHTML = `Author:- ${data.author}`;
+   a2.innerHTML = `${data.title}`;
+   a3.src = `${data.url}`;
+   i.href = `${data.preview[data.preview.length - 1]}`;
+}
+
 
