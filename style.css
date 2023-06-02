@@ -20,7 +20,8 @@ img {
    height: 100%;
 }
 .d4, .d5 {
-   margin: 20px auto 0;
+   display: flex;
+   margin: 20px auto;
 }
 input {
    color: White;
@@ -31,8 +32,11 @@ input {
    border-radius: 14px;
    margin: 0 auto;
 }
-a {
-   //display: none;
+i {
+   color: white;
+   margin-left: 20px;
+   text-decoration: none;
 }
-  
-  
+a {
+   display: none;
+}
