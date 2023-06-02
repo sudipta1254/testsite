@@ -23,6 +23,11 @@ img {
    display: flex;
    margin: 20px auto;
 }
+button {
+   margin: 0 auto;
+   width: 70px;
+   height: 30px;
+}
 input {
    color: White;
    background: Black;
