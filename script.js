@@ -40,7 +40,7 @@ function d() {
    a1.innerHTML = `Author:- ${data.author}`;
    a2.innerHTML = `${data.title}`;
    a3.src = `${data.url}`;
-   a4.innerHTML = `${data.ups} upvotes`;
+   a4.innerHTML = `${data.ups} ${data.ups == 1 ? 'upvote' : 'upvotes'}`;
    i[0].href = `${data.preview[data.preview.length - 1]}`;
    i[1].href = `${data.postLink}`;
 }
