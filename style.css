@@ -4,7 +4,7 @@ body {
 }
 .d2 {
     text-align: center;
-    margin: 0px 10px 20px;
+    margin: 0px 0px 20px;
 }
 .d3 {
     width: 400px;
@@ -39,7 +39,7 @@ input {
 }
 i {
    color: white;
-   margin-left: 20px;
+   margin-left: 10px;
    text-decoration: none;
 }
 .d41, a {
