@@ -11,7 +11,7 @@ list = ['AdviceAnimals', 'MemeEconomy', 'ComedyCemetery', 'memes',
         'linuxmemes', 'ProgrammerHumor', 'MEOW_IRL',
         'SequelMemes', 'SesameStreetMemes', 'YouSeeComrade',
         'shitposting', 'BPDmemes', 'GenealogyMemes', 'Im15AndThisIsYeet', 
-        'ComedyNecrophilia', 'dogelore', 'whenthe', 'anarchyches'];
+        'ComedyNecrophilia', 'dogelore', 'whenthe', 'anarchychess'];
 
 
 async function meme(w) {
