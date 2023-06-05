@@ -1,6 +1,7 @@
 body {
     color: white;
     background: #212121;
+    font-family: poppy;
 }
 .d2 {
     text-align: center;
@@ -45,4 +46,10 @@ i {
 .d41, a {
    /*display: none;*/
    margin: auto;
+}
+@font-face {
+  font-family: 'poppy';
+  src: url('cPOPPYBONFIRE.otf') format(opentype);
+  font-style: normal;
+  font-weight: normal;
 }
