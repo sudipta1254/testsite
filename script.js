@@ -20,12 +20,17 @@ async function meme(w) {
    .catch(error => {
       alert(error);
    });
-   //console.log(`${data.subreddit} ${w}`);
+   if (data.subreddit == null || data.subreddit == '')
+      alert(w+' not found!');
    d();
 }
 
 function get() {
    value = document.querySelector('input').value;
+   if (value == '') {
+       alert('Enter a subreddit to continue!');
+       return;
+   }
    meme(value);
 }
 
