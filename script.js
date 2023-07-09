@@ -41,6 +41,8 @@ function d() {
    a3 = document.querySelector('img');
    a4 = document.querySelector('.d41');
    i = document.querySelectorAll('a');
+   if(data.url.split('.')[3] == 'gif')
+      get();
    d1.innerHTML = `Subreddit:- ${data.subreddit}`;
    a1.innerHTML = `Author:- ${data.author}`;
    a2.innerHTML = `${data.title}`;
