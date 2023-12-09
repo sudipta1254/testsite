@@ -35,19 +35,14 @@ function get() {
 }
 
 function d() {
-   d1 = document.querySelector('.d21');
-   a1 = document.querySelector('.d22');
-   a2 = document.querySelector('.d23');
-   a3 = document.querySelector('img');
-   a4 = document.querySelector('.d41');
-   i = document.querySelectorAll('a');
-   if(data.url.split('.')[3] == 'gif')
+   i = $('a');
+   if(data.url.split('.')[3] === 'gif')
       get();
-   d1.innerHTML = `Subreddit:- ${data.subreddit}`;
-   a1.innerHTML = `Author:- ${data.author}`;
-   a2.innerHTML = `${data.title}`;
-   a3.src = `${data.url}`;
-   a4.innerHTML = `${data.ups} ${data.ups == 1 ? 'upvote' : 'upvotes'}`;
+   $('.d21').text(`Subreddit:- ${data.subreddit}`);
+   $('.d22').text(`Author:- ${data.author}`);
+   $('.d23').text(`${data.title}`);
+   $('img').attr('src', `${data.url}`);
+   $('.d41').text(`${data.ups} ${data.ups == 1 ? 'upvote' : 'upvotes'}`);
    i[0].href = `${data.preview[data.preview.length - 1]}`;
    i[1].href = `${data.postLink}`;
 }
