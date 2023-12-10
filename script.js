@@ -25,31 +25,34 @@ async function meme(w) {
    d();
 }
 
-function get() {
-   value = document.querySelector('input').value;
+function get(x = 1) {
+   value = $('input').val();
    if (value == '') {
-       alert('Enter a subreddit to continue!');
-       return;
+      if(x)
+         alert('Enter a subreddit to continue!');
+      return;
    }
    meme(value);
 }
 
 function d() {
    i = $('a');
-   if(data.url.split('.')[3] === 'gif')
-      get();
-   $('.d21').text(`Subreddit:- ${data.subreddit}`);
-   $('.d22').text(`Author:- ${data.author}`);
-   $('.d23').text(`${data.title}`);
-   $('img').attr('src', `${data.url}`);
-   $('.d41').text(`${data.ups} ${data.ups == 1 ? 'upvote' : 'upvotes'}`);
-   i[0].href = `${data.preview[data.preview.length - 1]}`;
-   i[1].href = `${data.postLink}`;
+   if(data.url.includes('.gif'))
+      get(0);
+   else {
+      $('.d21').text(`Subreddit:- ${data.subreddit}`);
+      $('.d22').text(`Author:- ${data.author}`);
+      $('.d23').text(`${data.title}`);
+      $('img').attr('src', `${data.url}`);
+      $('.d41').text(`${data.ups} ${data.ups == 1 ? 'upvote' : 'upvotes'}`);
+      i[0].href = `${data.preview[data.preview.length - 1]}`;
+      i[1].href = `${data.postLink}`;
+   }
 }
 
-function random() {
+$('.random').click(function() {
    page = list[Math.floor(Math.random()*list.length)];
    meme(page);
-}
+})
 
 //random();
