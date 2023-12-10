@@ -55,4 +55,11 @@ $('.random').click(function() {
    meme(page);
 })
 
+$('input[type="text"]').keypress(function(e) {
+   if(e.key === "Enter") {
+      e.preventDefault();
+      get();
+   }
+})
+
 //random();
