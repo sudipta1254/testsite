@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.send("<h1>About Me</h1><p>My name is Angela</p>");
+  res.send("<h1>About Me</h1><p>My name is Sudipto</p>");
 });
 
 app.get("/contact", (req, res) => {
@@ -19,5 +19,6 @@ app.get("/json", (req, res) => {
 });
 
 app.listen(port, () => {
+  alert(`Server started on port ${port}`);
   console.log(`Server started on port ${port}`);
 });
