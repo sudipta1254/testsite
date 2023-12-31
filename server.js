@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname+'public/index.html');
 });
 
+app.get('/i', (req, res) => {
+    res.send('1');
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
