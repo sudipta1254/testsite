@@ -7,13 +7,12 @@ const app = express();
 const port = 3000;
 
 // Serve static files (HTML, CSS, JS) from the 'public' directory
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 // Handle requests to the root URL
-app.get('/', (req, res) => {
-    // res.sendFile(__dirname + '/public/index.html');
-    res.json({message: "new"});
-});
+// app.get('/n', (req, res) => {
+//     res.sendFile(__dirname + '/public/index.html');
+// });
 
 // Start the server
 app.listen(port, () => {
