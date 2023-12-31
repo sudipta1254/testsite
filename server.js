@@ -12,9 +12,10 @@ app.use(express.static('public'));
 // Handle requests to the root URL
 app.get('/', (req, res) => {
     res.sendFile(__dirname+'public/index.html');
+    res.json({message: "enw"});
 });
 
-app.get('/i', (req, res) => {
+app.get('/hm', (req, res) => {
     res.send('1');
 });
 
