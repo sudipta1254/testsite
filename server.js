@@ -11,7 +11,7 @@ app.use(express.static('public'));
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
-    res.send('Hello');
+    res.sendFile(__dirname+'public/index.html');
 });
 
 // Start the server
