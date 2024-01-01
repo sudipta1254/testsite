@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/idx.html');
+    res.sendFile(__dirname + '/ix.html');
 });
 app.get('/e', (req, res) => {
     res.send({ message: "New Express App" });
