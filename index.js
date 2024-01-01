@@ -1,14 +1,14 @@
 import "dotenv/config";
 import express from "express";
 import path from "path";
-//import { fileURLToPath } from "url";
-//const __dirname = dirname(fileURLToPath(import.meta.url));
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Serve static files (HTML, CSS, JS) from the 'views' directory
-app.use(express.static(path.join('public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
