@@ -12,7 +12,7 @@ app.use(express.static('public'));
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/idx.html');
+    res.sendFile(__dirname + '/views/idx.html');
 });
 app.get('/e', (req, res) => {
     res.send({ message: "New Express App" });
