@@ -1,8 +1,8 @@
 import "dotenv/config";
 import express from "express";
-import { dirname } from "path";
+import { path } from "path";
 import { fileURLToPath } from "url";
-const __dirname = dirname(fileURLToPath(import.meta.url));
+//const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,7 +12,7 @@ app.use(express.static('public'));
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/idx.html');
+    res.sendFile(path.join(__dirname, '/idx.html'));
 });
 app.get('/e', (req, res) => {
     res.send({ message: "New Express App" });
