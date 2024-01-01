@@ -8,11 +8,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Serve static files (HTML, CSS, JS) from the 'views' directory
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/idx.html');
+    res.sendFile(__dirname + '/idx.html');
 });
 app.get('/e', (req, res) => {
     res.send({ message: "New Express App" });
