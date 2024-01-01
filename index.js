@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'));
+    //res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 app.get('/e', (req, res) => {
     res.send({ message: "New Express App" });
