@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Serve static files (HTML, CSS, JS) from the 'views' directory
-app.use(express.static('public'));
+app.use(express.static(path.join('public')));
 
 // Handle requests to the root URL
 app.get('/', (req, res) => {
