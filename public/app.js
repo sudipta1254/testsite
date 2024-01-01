@@ -1,3 +1,6 @@
+import "dotenv/config";
+const key = process.env.key || process.env.dev_key;
+
 let select2 = $('#select2'), select3 = $('#select3'),
 select4 = $('#select4'), select5 = $('#select5'),
 fill = $('#data'), txt = $('input[type="search"]'),
@@ -16,17 +19,17 @@ function main() {
    switch(xt) {
       case 1:
          if(s2 == 'reg_number')
-            url += `/flights?api_key=${key2}&${s2}=${inp}`;
+            url += `/flights?api_key=${key}&${s2}=${inp}`;
          else
-            url += `/flights?api_key=${key2}&${s2}${s5}=${inp}`;
+            url += `/flights?api_key=${key}&${s2}${s5}=${inp}`;
          realtime(url);
          break;
       case 2:
-         url += `/schedules?api_key=${key2}&${s3}${s5}=${inp}`;
+         url += `/schedules?api_key=${key}&${s3}${s5}=${inp}`;
          schedule(url);
          break;
       case 3:
-         url += `/flight?api_key=${key2}&${s4}${s5}=${inp}`;
+         url += `/flight?api_key=${key}&${s4}${s5}=${inp}`;
          information(url);
          break;
       default:
@@ -367,6 +370,6 @@ $('button').click(() => {
 
 
 
-const key = 'a1af1621-da48-4592-a132-52415d0cabd3'; /* For public */
-const key2 = '7e5231c8-8efc-402c-a160-6c769fe8e934';/* For dev */
+//const key = 'a1af1621-da48-4592-a132-52415d0cabd3'; /* For public */
+//const key2 = '7e5231c8-8efc-402c-a160-6c769fe8e934';/* For dev */
 
