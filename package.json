@@ -2,11 +2,11 @@
   "name": "testsite",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "ser.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node ser.js"
   },
   "author": "",
   "license": "ISC",
