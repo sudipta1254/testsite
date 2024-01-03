@@ -1,5 +1,4 @@
-import "dotenv/config";
-const key = process.env.key || process.env.dev_key;
+import key from "../index.js";
 
 let select2 = $('#select2'), select3 = $('#select3'),
 select4 = $('#select4'), select5 = $('#select5'),
