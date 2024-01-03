@@ -1,4 +1,4 @@
-import "dotenv/config";
+//import "dotenv/config";
 const key = process.env.key || process.env.dev_key;
 
 let select2 = $('#select2'), select3 = $('#select3'),
