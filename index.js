@@ -6,6 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const port = process.env.PORT || 3000;
+const key = process.env.key || process.env.dev_key;
+export default key;
 
 // Serve static files (HTML, CSS, JS) from the 'views' directory
 app.use(express.static(path.join(__dirname, 'public')));
