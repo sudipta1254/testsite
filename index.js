@@ -4,6 +4,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// const express = require("express");
+// const dotenv = require("dotenv").config();
+// const path = require("path");
+
+
 const port = process.env.PORT || 3000;
 const app = express();
 
