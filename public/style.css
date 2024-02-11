@@ -1,7 +1,7 @@
 body {
    min-height: 100vh;
    color: white;
-   background: #212121; /*cûed16*/
+   background: #212121;
    font-family: Raleway;
    font-weight: 500;
    cursor: url('https://img.icons8.com/color-glass/25/select-cursor--v1.png'),
@@ -82,7 +82,7 @@ select {
    margin: 10px 12px 0;
    text-align: center;
 }
-#select3, #select4 {
+#select3 {
    display: none;
 }
 

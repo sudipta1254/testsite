@@ -1,11 +1,21 @@
-let select2 = $('#select2'), select3 = $('#select3'),
-select4 = $('#select4'), select5 = $('#select5'),
-s6 = $('#select6'), fill = $('#data'), msgbox2 = $('#msgBox2'),
-msgbox = $('#msgBox'), msgmap = $('#msgMap'),
-txt = $('input[type="search"]'), ifrm = $('iframe'),
-btn = $('button'), timeId, xt = 1, key, dataStore, isMapAv;
+let select2 = $('#select2');
+let select3 = $('#select3');
+let select4 = $('#select4');
+let s5 = $('#select5');
+let fill = $('#data');
+let msgbox = $('#msgBox');
+let msgbox2 = $('#msgBox2');
+let msgmap = $('#msgMap');
+let txt = $('input[type="search"]');
+let ifrm = $('iframe');
+let btn = $('button');
+let timeId;
+let xt = 1;
+let key;
+let dataStore;
+let isMapAv;
 
-function main() {
+function origin() {
    if(!txt.val().trim()) {
       alert('Enter query to continue!');
       return;
@@ -13,21 +23,17 @@ function main() {
    let url = 'https://airlabs.co/api/v9',
    inp = txt.val().trim(),
    s2 = select2.val(), s3 = select3.val(),
-   s4 = select4.val(), s5 = select5.val();
+   s4 = select4.val();
    switch(xt) {
       case 1:
-         if(s2 == 'reg_number')
+         if(s2 === 'reg_number')
             url += `/flights?api_key=${key}&${s2}=${inp}`;
          else
-            url += `/flights?api_key=${key}&${s2}${s5}=${inp}`;
+            url += `/flights?api_key=${key}&${s2}${s4}=${inp}`;
          realtime(url);
          break;
       case 2:
-         url += `/schedules?api_key=${key}&${s3}${s5}=${inp}`;
-         schedule(url);
-         break;
-      case 3:
-         url += `/flight?api_key=${key}&${s4}${s5}=${inp}`;
+         url += `/flight?api_key=${key}&${s3}${s4}=${inp}`;
          information(url);
          break;
       default:
@@ -39,10 +45,11 @@ async function realtime(url, stored = 0) {
    try {
       let d, isFromStored = 1;
       if(!stored) {
-         msgbox.show(); //start(0);
+         start(1);
          const response = await fetch(url);
          if(!response.ok) {
             alert(response.status+' '+response.type);
+            stop();
             return;
          }
          d = await response.json();
@@ -59,9 +66,8 @@ async function realtime(url, stored = 0) {
             return;
          }
          keyLeft(d);
-         s6.prop('disabled', false);
       } else {
-         msgbox.show(); //start(1);
+         start(1);
          d = dataStore;
          isFromStored = 0;
       }
@@ -103,11 +109,8 @@ async function realtime(url, stored = 0) {
    }
    help2()
 }
-function schedule(url) {
-   fill.text('No data found!');
-}
 function information(url) {
-   msgbox.show(); //start(0);
+   msgbox.show();
    fetch(url)
    .then(response => {
       if(!response.ok)
@@ -237,20 +240,16 @@ function information(url) {
 
 $('#select1').change(function(){
    if($(this).val() === 'realtime') {
-      $('#select2, #select6').css('display', 'block');
-      $('#select3, #select4').css('display', 'none');
+      $('#select2, #select5').css('display', 'block');
+      $('#select3').css('display', 'none');
       xt = 1;
-   } else if($(this).val() === 'schedule') {
-      select3.css('display', 'block');
-      $('#select2, #select4, #select6').css('display', 'none');
-      xt = 2;
    } else if($(this).val() === 'information'){
-      select4.css('display', 'block');
-      $('#select2, #select3, #select6').css('display', 'none');
-      xt = 3;
+      select3.css('display', 'block');
+      $('#select2, #select5').css('display', 'none');
+      xt = 2;
    }
 })
-s6.change(function() {
+s5.change(function() {
    realtime(0, 1);
 })
 
@@ -349,8 +348,8 @@ function mapZoomLvl(z) {
       return 4;
 }
 function sortFl(d) {
-   if(s6.val()) {
-      let term = s6.val();
+   if(s5.val()) {
+      let term = s5.val();
       if(term.includes('_a'))
          d.sort(function(a, b) {
             return a[term.slice(0,-2)] - b[term.slice(0,-2)];
@@ -368,7 +367,10 @@ function keyLeft(d) {
       alert(`${key} call(s) letf!`);
 }
 function start(zz) {
-   let str, counter = 0;
+   if(zz)
+      msgbox.show();
+   s5.prop('disabled', msgbox.is(':visible'));
+   /*let str, counter = 0;
    str = zz === 0 ? 'Loading.' : 'Sorting flights.';
    const intervalId = setInterval(() => {
       const dots = '.'.repeat(++counter % 3);
@@ -379,7 +381,7 @@ function start(zz) {
          msgbox.text();
          clearInterval(intervalId);
       }
-   }, 500);
+   }, 500);*/
 }
 function stop(zz = 0, num = 0) {
    msgbox.hide();
@@ -389,20 +391,19 @@ function stop(zz = 0, num = 0) {
          msgbox2.hide();
       }, 2000);
    }
+   start(0);
 }
 
 
 $('#update').change(function() {
-   if($(this).is(':checked')) {
+   $(this).is(':checked') ?
       timeId = setInterval(function() {
-         txt.val() ? main() : (
+         txt.val() ? origin() : (
             clearInterval(timeId),
             $('#update').prop('checked', false)
          );
-      }, 20000);
-   } else {
-      clearInterval(timeId);
-   }
+      }, 20000)
+   : clearInterval(timeId);
 })
 
 $('#mapt').change(function() {
@@ -424,24 +425,27 @@ $('#mapt').change(function() {
       msgmap.hide();
       $('html, body').animate({
          scrollTop: 0
-      }, 1000);
+      }, 500);
    }
 })
 
 txt.on("keypress", function(event) {
    if (event.key === "Enter") {
       event.preventDefault();
-      if(msgbox.css('display') == 'none') {
+      if(msgbox.css('display') === 'none') {
          $(this).blur();
-         main();
+         origin();
       }
    }
 });
 
 $('button').click(() => {
-   if(msgbox.css('display') == 'none') main();
+   if(msgbox.css('display') === 'none')
+      origin();
 });
 
+dataStore = {"request":{"lang":"en","currency":"USD","time":0,"id":"ms0wg9u4hlc","server":"g","host":"airlabs.co","pid":1559923,"key":{"id":29163,"api_key":"7e5231c8-8efc-402c-a160-6c769fe8e934","type":"free","expired":"2024-02-26T23:00:00.000Z","registered":"2023-12-28T01:54:14.000Z","upgraded":null,"limits_by_hour":2500,"limits_by_minute":250,"limits_by_month":1000,"limits_total":3},"params":{"airline_iata":"uk","lang":"en"},"version":9,"method":"flights","client":{"ip":"2401:4900:7014:72e::635:f248","geo":{"country_code":"IN","country":"India","continent":"Asia","city":"Gunupur","lat":19.0827,"lng":83.8054,"timezone":"Asia/Kolkata"},"connection":{},"device":{},"agent":{},"karma":{"is_blocked":false,"is_crawler":false,"is_bot":false,"is_friend":false,"is_regular":true}}},"response":[{"hex":"801408","reg_number":"VT-TQA","flag":"IN","lat":24.393788,"lng":73.83297,"alt":1838,"dir":39.8,"speed":359,"v_speed":0,"flight_number":"623","flight_icao":"VTI623","flight_iata":"UK623","dep_icao":"VABB","dep_iata":"BOM","arr_icao":"VAUD","arr_iata":"UDR","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801439","reg_number":"VT-TQE","flag":"IN","lat":23.767746,"lng":74.628147,"alt":12074,"dir":202.1,"speed":700,"v_speed":0,"flight_number":"995","flight_icao":"VTI995","flight_iata":"UK995","dep_icao":"VIDP","dep_iata":"DEL","arr_icao":"VABB","arr_iata":"BOM","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801493","reg_number":"VT-TYC","flag":"IN","lat":15.874803,"lng":80.858722,"alt":11945,"dir":52.7,"speed":960,"v_speed":0,"flight_number":"755","flight_icao":"VTI755","flight_iata":"UK755","dep_icao":"VOBL","dep_iata":"BLR","arr_icao":"VEGT","arr_iata":"GAU","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801534","reg_number":"VT-TQN","flag":"IN","lat":23.919537,"lng":77.378116,"alt":11465,"dir":355.2,"speed":891,"v_speed":0,"flight_number":"830","flight_icao":"VTI830","flight_iata":"UK830","dep_icao":"VOHS","dep_iata":"HYD","arr_icao":"VIDP","arr_iata":"DEL","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801602","reg_number":"VT-TQR","flag":"IN","lat":26.352692,"lng":78.261064,"alt":11884,"dir":325.9,"speed":763,"v_speed":0,"flight_number":"786","flight_icao":"VTI786","flight_iata":"UK786","dep_icao":"VEBS","dep_iata":"BBI","arr_icao":"VIDP","arr_iata":"DEL","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"}],"terms":"Unauthorized access is prohibited and punishable by law. \nReselling data 'As Is' without AirLabs.Co permission is strictly prohibited. \nFull terms on https://airlabs.co/. \nContact us info@airlabs.co"};
+//realtime(0, 1);
 
 
 
@@ -456,4 +460,4 @@ $('button').click(() => {
 const key1 = 'a1af1621-da48-4592-a132-52415d0cabd3',
 key2 = '7e5231c8-8efc-402c-a160-6c769fe8e934',
 key3 = '5dbaf919-6297-43d4-bf12-b155f0a70d55';
-key = key2;
+key = key3;
