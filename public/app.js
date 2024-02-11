@@ -1,3 +1,5 @@
+import country from './country.js';
+
 let select2 = $('#select2');
 let select3 = $('#select3');
 let select4 = $('#select4');
@@ -77,12 +79,19 @@ async function realtime(url, stored = 0) {
       fill.empty();
       let maxCount = d.response.length, count = 0;
       d.response.forEach(async dt => {
-         let text = `Registration: <b>${dt.reg_number}</b><br>
-               Flag: <b>${await help3(dt.flag)} ${flag(dt.flag.toLowerCase())}</b><br>
-               Position: <b>${dt.lat.toFixed(2)}, ${dt.lng.toFixed(2)}</b><br>
-               Altitude: <b>${(dt.alt*3.28).toFixed(0)} ft</b><br>
-               Direction: <b>${dt.dir}°</b><br>
-               Speed: <b>${dt.speed} Kmph</b><br>`;
+         let text = '';
+         if(dt.reg_number)
+            text = `Registration: <b>${dt.reg_number}</b><br>`;
+         if(dt.flag)
+            text += `Flag: <b>${await help3(dt.flag)} ${flag(dt.flag.toLowerCase())}</b><br>`;
+         if(dt.lat)
+            text += `Position: <b>${dt.lat.toFixed(2)}, ${dt.lng.toFixed(2)}</b><br>`;
+         if(dt.alt)
+            text += `Altitude: <b>${(dt.alt*3.28).toFixed(0)} ft</b><br>`;
+         if(dt.dir)
+            text += `Direction: <b>${dt.dir}°</b><br>`;
+         if(dt.speed)
+            text += `Speed: <b>${dt.speed} Kmph</b><br>`;
          if(dt.v_speed)
             text+= `V speed: <b>${dt.v_speed}</b><br>`;
          if(dt.squawk)
@@ -95,16 +104,22 @@ async function realtime(url, stored = 0) {
             text += `Departure ICAO/IATA: <b>${dt.dep_icao}/${dt.dep_iata}</b><br>`;
          if(dt.arr_icao)
             text +=` Arrival ICAO/IATA: <b>${dt.arr_icao}/${dt.arr_iata}</b><br>`;
-         text += `Airline ICAO/IATA: <b>${dt.airline_icao}/${dt.airline_iata} ${logo(dt.airline_iata)}</b><br>
-               Aircraft ICAO: <b>${dt.aircraft_icao}</b><br>
-               Updated: <b>${time(dt.updated)}</b><br>
-               Status: <b>${dt.status}</b><br>
-               Type: <b>${dt.type}</b><hr>`;
+         if(dt.airline_icao)
+            text += `Airline ICAO/IATA: <b>${dt.airline_icao}/${dt.airline_iata} ${logo(dt.airline_iata)}</b><br>`;
+         if(dt.aircraft_icao)
+            text += `Aircraft ICAO: <b>${dt.aircraft_icao}</b><br>`;
+         if(dt.updated)
+            text += `Updated: <b>${time(dt.updated)}</b><br>`;
+         if(dt.status)
+            text += `Status: <b>${dt.status}</b><br>`;
+         if(dt.type)
+            text += `Type: <b>${dt.type}</b><hr>`;
          $('#data').append(text);
          if(++count === maxCount)
             stop(isFromStored, maxCount);
       });
    } catch(e) {
+      stop();
       alert(`Realtime error: ${e.message}`);
    }
    help2()
@@ -233,6 +248,7 @@ function information(url) {
       stop();
    })
    .catch(e => {
+      stop();
       alert(`Information error: ${e.message}`);
    })
 }
@@ -242,10 +258,12 @@ $('#select1').change(function(){
    if($(this).val() === 'realtime') {
       $('#select2, #select5').css('display', 'block');
       $('#select3').css('display', 'none');
+      fill.css('height', '67vh');
       xt = 1;
    } else if($(this).val() === 'information'){
       select3.css('display', 'block');
       $('#select2, #select5').css('display', 'none');
+      fill.css('height', '64vh');
       xt = 2;
    }
 })
@@ -314,10 +332,11 @@ async function help3(code) {
       if(code == 'UK')
          return code;
       
-      const response = await fetch(`https://restcountries.com/v3/alpha/${code}`);
+      const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
       const data = await response.json();
       const countryName = data[0].name.common;
       return countryName;
+      // return country[code];
    } catch (error) {
       throw new Error(error.message);
    }
@@ -444,7 +463,7 @@ $('button').click(() => {
       origin();
 });
 
-dataStore = {"request":{"lang":"en","currency":"USD","time":0,"id":"ms0wg9u4hlc","server":"g","host":"airlabs.co","pid":1559923,"key":{"id":29163,"api_key":"7e5231c8-8efc-402c-a160-6c769fe8e934","type":"free","expired":"2024-02-26T23:00:00.000Z","registered":"2023-12-28T01:54:14.000Z","upgraded":null,"limits_by_hour":2500,"limits_by_minute":250,"limits_by_month":1000,"limits_total":3},"params":{"airline_iata":"uk","lang":"en"},"version":9,"method":"flights","client":{"ip":"2401:4900:7014:72e::635:f248","geo":{"country_code":"IN","country":"India","continent":"Asia","city":"Gunupur","lat":19.0827,"lng":83.8054,"timezone":"Asia/Kolkata"},"connection":{},"device":{},"agent":{},"karma":{"is_blocked":false,"is_crawler":false,"is_bot":false,"is_friend":false,"is_regular":true}}},"response":[{"hex":"801408","reg_number":"VT-TQA","flag":"IN","lat":24.393788,"lng":73.83297,"alt":1838,"dir":39.8,"speed":359,"v_speed":0,"flight_number":"623","flight_icao":"VTI623","flight_iata":"UK623","dep_icao":"VABB","dep_iata":"BOM","arr_icao":"VAUD","arr_iata":"UDR","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801439","reg_number":"VT-TQE","flag":"IN","lat":23.767746,"lng":74.628147,"alt":12074,"dir":202.1,"speed":700,"v_speed":0,"flight_number":"995","flight_icao":"VTI995","flight_iata":"UK995","dep_icao":"VIDP","dep_iata":"DEL","arr_icao":"VABB","arr_iata":"BOM","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801493","reg_number":"VT-TYC","flag":"IN","lat":15.874803,"lng":80.858722,"alt":11945,"dir":52.7,"speed":960,"v_speed":0,"flight_number":"755","flight_icao":"VTI755","flight_iata":"UK755","dep_icao":"VOBL","dep_iata":"BLR","arr_icao":"VEGT","arr_iata":"GAU","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801534","reg_number":"VT-TQN","flag":"IN","lat":23.919537,"lng":77.378116,"alt":11465,"dir":355.2,"speed":891,"v_speed":0,"flight_number":"830","flight_icao":"VTI830","flight_iata":"UK830","dep_icao":"VOHS","dep_iata":"HYD","arr_icao":"VIDP","arr_iata":"DEL","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801602","reg_number":"VT-TQR","flag":"IN","lat":26.352692,"lng":78.261064,"alt":11884,"dir":325.9,"speed":763,"v_speed":0,"flight_number":"786","flight_icao":"VTI786","flight_iata":"UK786","dep_icao":"VEBS","dep_iata":"BBI","arr_icao":"VIDP","arr_iata":"DEL","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"}],"terms":"Unauthorized access is prohibited and punishable by law. \nReselling data 'As Is' without AirLabs.Co permission is strictly prohibited. \nFull terms on https://airlabs.co/. \nContact us info@airlabs.co"};
+//dataStore = {"request":{"lang":"en","currency":"USD","time":0,"id":"ms0wg9u4hlc","server":"g","host":"airlabs.co","pid":1559923,"key":{"id":29163,"api_key":"7e5231c8-8efc-402c-a160-6c769fe8e934","type":"free","expired":"2024-02-26T23:00:00.000Z","registered":"2023-12-28T01:54:14.000Z","upgraded":null,"limits_by_hour":2500,"limits_by_minute":250,"limits_by_month":1000,"limits_total":3},"params":{"airline_iata":"uk","lang":"en"},"version":9,"method":"flights","client":{"ip":"2401:4900:7014:72e::635:f248","geo":{"country_code":"IN","country":"India","continent":"Asia","city":"Gunupur","lat":19.0827,"lng":83.8054,"timezone":"Asia/Kolkata"},"connection":{},"device":{},"agent":{},"karma":{"is_blocked":false,"is_crawler":false,"is_bot":false,"is_friend":false,"is_regular":true}}},"response":[{"hex":"801408","reg_number":"VT-TQA","flag":"IN","lat":24.393788,"lng":73.83297,"alt":1838,"dir":39.8,"speed":359,"v_speed":0,"flight_number":"623","flight_icao":"VTI623","flight_iata":"UK623","dep_icao":"VABB","dep_iata":"BOM","arr_icao":"VAUD","arr_iata":"UDR","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801439","reg_number":"VT-TQE","flag":"IN","lat":23.767746,"lng":74.628147,"alt":12074,"dir":202.1,"speed":700,"v_speed":0,"flight_number":"995","flight_icao":"VTI995","flight_iata":"UK995","dep_icao":"VIDP","dep_iata":"DEL","arr_icao":"VABB","arr_iata":"BOM","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801493","reg_number":"VT-TYC","flag":"IN","lat":15.874803,"lng":80.858722,"alt":11945,"dir":52.7,"speed":960,"v_speed":0,"flight_number":"755","flight_icao":"VTI755","flight_iata":"UK755","dep_icao":"VOBL","dep_iata":"BLR","arr_icao":"VEGT","arr_iata":"GAU","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801534","reg_number":"VT-TQN","flag":"IN","lat":23.919537,"lng":77.378116,"alt":11465,"dir":355.2,"speed":891,"v_speed":0,"flight_number":"830","flight_icao":"VTI830","flight_iata":"UK830","dep_icao":"VOHS","dep_iata":"HYD","arr_icao":"VIDP","arr_iata":"DEL","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"},{"hex":"801602","reg_number":"VT-TQR","flag":"IN","lat":26.352692,"lng":78.261064,"alt":11884,"dir":325.9,"speed":763,"v_speed":0,"flight_number":"786","flight_icao":"VTI786","flight_iata":"UK786","dep_icao":"VEBS","dep_iata":"BBI","arr_icao":"VIDP","arr_iata":"DEL","airline_icao":"VTI","airline_iata":"UK","aircraft_icao":"A20N","updated":1707544662,"status":"en-route","type":"adsb"}],"terms":"Unauthorized access is prohibited and punishable by law. \nReselling data 'As Is' without AirLabs.Co permission is strictly prohibited. \nFull terms on https://airlabs.co/. \nContact us info@airlabs.co"};
 //realtime(0, 1);
 
 
