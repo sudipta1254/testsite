@@ -240,6 +240,15 @@ header, main {
    color: #000;
 }
 
+ul#tourli {
+   list-style-type: co;
+}
+@counter-style co {
+   system: cyclic;
+   symbols: ®️ ✈️ 🛬 🛫;
+   suffix: " ";
+}
+
 @media screen and (min-width: 768px) {
    #data {
       height: 67vh;
@@ -248,5 +257,5 @@ header, main {
 
 @font-face {
    font-family: 'Cailyne';
-   src: url('./Font/Cailyne.ttf') format(truetype);
+   src: url('./Font/CARMILA.ttf');
 }

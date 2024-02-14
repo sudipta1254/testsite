@@ -32,7 +32,7 @@ const allSteps = [
         element: '#select2',
         popover: {
             title: 'Choose an option',
-            description: 'When you choose realtime, choose among<br><ol><li>Aircraft registration<li>Airline ICAO/IATA<li>Arrival ICAO/IATA<li>Departure ICAO/IATA.',
+            description: 'When you choose realtime, choose among<ul id="tourli"><li>Aircraft registration<li>Airline ICAO/IATA<li>Arrival ICAO/IATA<li>Departure ICAO/IATA.</ul>',
             side: 'bottom',
             align: 'start'
         }
@@ -116,7 +116,7 @@ const infoSteps = [
         element: '#select2',
         popover: {
             title: 'Choose an option',
-            description: 'When you choose realtime, choose among<br><ol><li>Aircraft registration<li>Airline ICAO/IATA<li>Arrival ICAO/IATA<li>Departure ICAO/IATA.',
+            description: 'When you choose realtime, choose among<ul id="tourli"><li>Aircraft registration<li>Airline ICAO/IATA<li>Arrival ICAO/IATA<li>Departure ICAO/IATA.</ul>',
             side: 'bottom',
             align: 'start'
         }
@@ -180,7 +180,7 @@ const infoSteps = [
 /*  */
 driverW({
     animate: true, // Enable animations
-    opacity: 0.75, // Set overlay opacity
+    overlayOpacity: 0.75, // Set overlay opacity
     showProgress: true,
     smoothScroll: true,
     steps: allSteps
@@ -189,7 +189,7 @@ driverW({
 /* When user clicks on info icon, only info steps are shown */
 $('.fa-info').click(() => {
     driverW({
-        opacity: 0.75,
+        overlayOpacity: 0.75,
         showProgress: true,
         smoothScroll: true,
         steps: infoSteps,
