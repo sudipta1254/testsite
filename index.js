@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/updates", (req, res) => {
-    res.json({ updates: "New updates oming soon..."});
+    res.json({ updates: "New updates coming soon..."});
 });
 
 app.listen(port, () => {
