@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname+"/index.html");
 });
 
-app.get("/h", (req, res) => {
-    res.json({helper: "Coming soon..."});
+app.get("/updates", (req, res) => {
+    res.json({ updates: "New updates oming soon..."});
 });
 
 app.listen(port, () => {
